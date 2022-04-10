@@ -1,4 +1,0 @@
-apiHostURL = "http://www.newsapi.org/v2";
-newsApiKey = "2a1e385186534924a09361fd4a21851d";
-
-export {apiHostURL, newsApiKey};

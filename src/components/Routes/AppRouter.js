@@ -2,6 +2,7 @@ import React from "react";
 import {Route, Routes} from 'react-router-dom';
 import Navbar from "../navbar/Navbar";
 import Home from "../Home/Home";
+import News from "../News/News";
 
 const AppRouter = (props) => {
     return(
@@ -9,6 +10,7 @@ const AppRouter = (props) => {
             <Navbar/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
+                <Route path="/news" element={<News/>}/>
             </Routes>
         </div>
     )

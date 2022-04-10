@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
-import {apiHostURL, newsApiKey} from "../../../config";
+import {apiHostURL, newsApiKey} from "../../config";
 
 const NewsContext = React.createContext({});
 
@@ -26,8 +26,10 @@ const NewsProvider = (props) => {
     }, [query])
 
     return(
-        <h1>NewsProvider</h1>
+        <NewsContext.Provider value={{articles, setLoading, setQuery}}>
+            {props.children}
+        </NewsContext.Provider>
     )
 }
 
-export default NewsProvider;
+export {NewsProvider, NewsContext};

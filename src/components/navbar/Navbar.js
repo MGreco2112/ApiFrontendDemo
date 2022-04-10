@@ -23,7 +23,7 @@ const Navbar = (props) => {
                 fontWeight: "bold",
                 fontSize: "2.5em",
                 margin: "0 20px"
-            }}>API Site Name Here</h1>
+            }}>News Hub</h1>
             <div style={{
                 margin: "0 20px",
                 flexDirection: "row",
@@ -32,6 +32,7 @@ const Navbar = (props) => {
                 alignItems: "center",
             }}>
                 <NavButton to="/" label="Home"/>
+                <NavButton to="/news" label="View News"/>
             </div>
         </div>
         <div style={{height: "75px"}}/>
