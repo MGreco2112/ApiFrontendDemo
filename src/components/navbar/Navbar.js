@@ -31,7 +31,7 @@ const Navbar = (props) => {
                 userSelect: "none",
                 alignItems: "center",
             }}>
-                {/* NavButtons go here */}
+                <NavButton to="/" label="Home"/>
             </div>
         </div>
         <div style={{height: "75px"}}/>
