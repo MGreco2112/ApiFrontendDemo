@@ -7,26 +7,26 @@ const NewsContext = React.createContext({});
 const NewsProvider = (props) => {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [query, setQuery] = useState(props.query);
+    const [query, setQuery] = useState('Javascript');
 
     useEffect(() => {
         const _getNews = async (query) => {
             try {
-                const res = await axios.get(`${apiHostURL}everything/q=${query}&apikey=${newsApiKey}`);
+                const res = await axios.get(`${apiHostURL}/everything?q=${query}&apiKey=${newsApiKey}`);
 
                 console.log(res.data);
-                setArticles(res.data);
+                setArticles(res.data.articles);
                 setLoading(false);
             } catch (e) {
                 console.error(e.message);
             }
         }
         setLoading(true);
-        _getNews();
+        _getNews(query);
     }, [query])
 
     return(
-        <NewsContext.Provider value={{articles, setLoading, setQuery}}>
+        <NewsContext.Provider value={{articles, loading, setQuery}}>
             {props.children}
         </NewsContext.Provider>
     )

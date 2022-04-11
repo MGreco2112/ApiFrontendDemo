@@ -1,7 +1,7 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import axios from "axios";
 import Article from "./Article";
-import { NewsContext } from "../Providers/NewsProvider";
+import { apiHostURL, newsApiKey } from "../../config";
 import Form from "../common/Form";
 import InlineInputContainer from "../common/InlineInputContainer";
 import Input from "../common/Input";
@@ -11,14 +11,31 @@ import Spinner from "../faCommon/Spinner";
 
 const Articles = (props) => {
 
-    const {articles, loading, setQuery} = useContext(NewsContext);
+    const [articles, setArticles] = useState('');
+
+    const [loading, setLoading] = useState(true);
 
     const [que, setQue] = useState("");
 
     const handleSubmit = (e) => {
-        setQuery(que);
+        setQue(que);
+        _getNews(que);
     }
 
+    
+    const _getNews = async (query) => {
+        try {
+            const res = await axios.get(`${apiHostURL}/everything?q=${query}&apiKey=${newsApiKey}`);
+
+            console.log(res.data);
+            setArticles(res.data.articles);
+            setLoading(false);
+        } catch (e) {
+            console.error(e.message);
+        }
+    }
+    
+    
     const displayArticles = () => {
         return(
             articles.map(article => {
@@ -43,7 +60,9 @@ const Articles = (props) => {
             </Form>
             {
                 loading ?
-                <Spinner/>
+                (
+                <p>Loading. . .</p>
+                )
                 :
                 displayArticles()
             }
