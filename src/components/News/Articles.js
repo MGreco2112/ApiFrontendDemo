@@ -43,6 +43,10 @@ const Articles = (props) => {
             <Article article={article} key={article.url}/>
         })
 
+        return(
+            <Article article={allArticles[0]} key={allArticles[0].url}/>
+        )
+
         // return(
         //     articlesMap.forEach(indexArticle => console.log(indexArticle))
         // )
