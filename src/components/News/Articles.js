@@ -36,18 +36,23 @@ const Articles = (props) => {
     }
     
     
-    const displayArticles = () => {
-        return(
-            articles.map(article => {
-                <Article article={article} key={article.url}/>
-            })
-        )
+    const displayArticles = (allArticles) => {
+        console.log(allArticles);
+
+        const articlesMap = allArticles.map(article => {
+            <Article article={article} key={article.url}/>
+        })
+
+        // return(
+        //     articlesMap.forEach(indexArticle => console.log(indexArticle))
+        // )
     }
 
 
     return(
         <Container>
-            <Form onSubmit={handleSubmit}>
+            {loading ? 
+                <Form onSubmit={handleSubmit}>
                 <InlineInputContainer>
                     <Input
                         id="query"
@@ -58,13 +63,8 @@ const Articles = (props) => {
                     <Button>Search</Button>
                 </InlineInputContainer>
             </Form>
-            {
-                loading ?
-                (
-                <p>Loading. . .</p>
-                )
-                :
-                displayArticles()
+            :
+            displayArticles(articles)
             }
         </Container>
     )
